@@ -43,19 +43,29 @@ devenv doctor --json
 
 ## Web Dashboard
 
-The dashboard is a local visualization layer over the existing `devenv doctor --json` report. It does not run a second diagnostic engine or expose environment-variable values. From the project directory with DevEnv Doctor installed, start it with:
+The dashboard is a visualization layer over the existing `devenv doctor --json` report. It uses Python's standard-library HTTP server; it does not run a second diagnostic engine or expose environment-variable values. From the project directory with DevEnv Doctor installed, start it locally with:
 
 ```shell
 python -m devenv_doctor.dashboard
 ```
 
-Then open <http://127.0.0.1:8765>. The server binds to localhost only. Use `Ctrl+C` in the terminal to stop it; run the command from the project directory you want to inspect.
+Then open <http://127.0.0.1:8765>. Locally, the server binds to localhost only. Use `Ctrl+C` in the terminal to stop it; run the command from the project directory you want to inspect.
+
+### Deploying on Render
+
+The included [render.yaml](render.yaml) configures a Render web service. In Render, create a new Blueprint Instance for this repository and approve the `devenv-doctor` service. Render installs the project with `python -m pip install .`, starts the web server with:
+
+```shell
+python -m devenv_doctor.dashboard --host 0.0.0.0 --port $PORT
+```
+
+The service binds to all interfaces and uses Render's assigned `PORT`; `/health` is its health-check endpoint. Render builds from the repository checkout, so the dashboard scans that deployed project and Render's Python environment—not the computer or project of someone viewing the public page. The dashboard has no authentication, and its report is publicly accessible when deployed; do not deploy it if that server-side diagnostic information should not be public.
 
 ## Uptime Monitoring
 
 An external uptime monitor can periodically request `GET /health`. The endpoint only checks that the web process is responding; it does not run the diagnostic scan or return project, filesystem, or environment details.
 
-For an externally reachable deployment, configure the host or reverse proxy to route HTTPS requests to `/health`. The server can bind to the deployment interface with:
+For an externally reachable deployment outside Render, configure the host or reverse proxy to route HTTPS requests to `/health`. The server can bind to the deployment interface with:
 
 ```shell
 python -m devenv_doctor.dashboard --host 0.0.0.0 --port <platform-port>
@@ -166,4 +176,3 @@ See [docs/development.md](docs/development.md) for setup, test, lint, and contri
 ## Contributing
 
 Keep changes focused on the supported Python-project checks. Include unit tests for rule behavior and integration tests for CLI changes, update relevant documentation, and run the checks in the development guide. Do not add automatic environment changes or claim support for formats that are not covered by tests.
-

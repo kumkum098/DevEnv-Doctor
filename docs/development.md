@@ -42,7 +42,7 @@ python -m pytest tests/integration/test_doctor.py
 ## Project Layout
 
 - `src/devenv_doctor/cli.py`: command orchestration and terminal/JSON reporting.
-- `src/devenv_doctor/dashboard.py`: localhost-only HTTP adapter for the existing CLI JSON report.
+- `src/devenv_doctor/dashboard.py`: standard-library HTTP adapter for the existing CLI JSON report; localhost-only by default.
 - `src/devenv_doctor/web/`: packaged dashboard HTML, CSS, and JavaScript assets.
 - `src/devenv_doctor/analyzers/`: runtime analysis.
 - `src/devenv_doctor/collectors/`: runtime and project-marker collection.

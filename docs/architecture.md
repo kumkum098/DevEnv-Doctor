@@ -53,7 +53,7 @@ The existing report is produced by `cli.py`:
 - Default output uses Rich to show an environment summary, passed checks, warnings, errors, diagnosis, evidence, and recommended fixes.
 - `devenv doctor --json` serializes the same collected data and findings with the standard-library `json` module. Environment-variable records contain names and status flags, not values.
 
-`dashboard.py` runs the existing CLI JSON command as a local subprocess and serves that JSON at `/api/report`. It binds to `127.0.0.1`; static assets are in `web/`. The health score is derived only from Finding severities and is returned separately in response headers. Environment-variable values are not included in the report or dashboard.
+`dashboard.py` runs the existing CLI JSON command as a subprocess and serves that JSON at `/api/report`. It binds to localhost by default; a deployment can provide its public bind address and port as command-line options. Static assets are in `web/`. The health score is derived only from Finding severities and is returned separately in response headers. Environment-variable values are not included in the report or dashboard. In deployment, the subprocess scans the project checkout and Python environment on the server, not the browser visitor's computer.
 
 ## Execution Flow
 

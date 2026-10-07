@@ -130,6 +130,7 @@ h1 { margin: 0; font-size: 25px; font-weight: 650; line-height: 1.2; }
 .page-heading p:last-child { margin: 7px 0 0; color: var(--muted); font-size: 12px; }
 .project-chip { display: flex; align-items: center; gap: 8px; max-width: 280px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 5px; color: var(--muted); font-size: 11px; }
 .project-chip-dot { width: 6px; height: 6px; box-shadow: none; }
+.environment-note { margin: 0 0 18px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 5px; color: var(--muted); font-size: 11px; line-height: 1.6; }
 
 .stat-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
 .stat-card, .panel { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }

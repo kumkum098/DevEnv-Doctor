@@ -345,7 +345,7 @@ async function refreshReport() {
     renderPage();
   } catch {
     document.querySelector("#scan-state").textContent = "Unavailable";
-    content.replaceChildren(node("div", "error-state", "Unable to load diagnostics. Check that the local server is running, then refresh."));
+    content.replaceChildren(node("div", "error-state", "Unable to load diagnostics. Check that the dashboard server is running, then refresh."));
   } finally {
     state.refreshing = false;
     refreshButton.disabled = false;

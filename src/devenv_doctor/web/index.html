@@ -28,8 +28,8 @@
 
         <div class="sidebar-footer">
           <span class="status-dot" aria-hidden="true"></span>
-          <span><b>Local scan</b><small id="scan-state">Connecting</small></span>
-          <span class="local-lock" aria-label="Local only">LOCAL</span>
+          <span><b>Server scan</b><small id="scan-state">Connecting</small></span>
+          <span class="local-lock" aria-label="Server environment">HOST</span>
         </div>
       </aside>
 
@@ -44,15 +44,16 @@
 
         <section class="page-heading">
           <div>
-            <p class="eyebrow">LOCAL ENVIRONMENT MONITOR</p>
+            <p class="eyebrow">SERVER ENVIRONMENT MONITOR</p>
             <h1 id="page-title">Overview</h1>
             <p id="page-subtitle">Environment health and diagnostic summary</p>
           </div>
-          <div class="project-chip"><span class="project-chip-dot"></span><span id="project-label">Current directory</span></div>
+          <div class="project-chip"><span class="project-chip-dot"></span><span id="project-label">Server project</span></div>
         </section>
 
+        <p class="environment-note" role="note">This dashboard scans the project and Python environment available to the server running it; it cannot inspect the computer viewing this page.</p>
         <div id="page-content" aria-live="polite">
-          <div class="loading-state"><span class="loader"></span><span>Collecting local diagnostics</span></div>
+          <div class="loading-state"><span class="loader"></span><span>Collecting server diagnostics</span></div>
         </div>
         <div class="toast" id="toast" role="status" aria-live="polite"></div>
       </main>

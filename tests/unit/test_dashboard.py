@@ -84,7 +84,10 @@ def test_dashboard_and_static_assets_load(dashboard_server) -> None:
     base_url, _, _ = dashboard_server
 
     for path, expected in (
-        ("/", "DevEnv Doctor"),
+        (
+            "/",
+            "cannot inspect the computer viewing this page",
+        ),
         ("/assets/dashboard.css", "--canvas"),
         ("/assets/dashboard.js", "renderDependencies"),
     ):
